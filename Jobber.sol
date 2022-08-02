@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-// use remix
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -24,10 +23,10 @@ contract Jobber is Ownable {
 
     mapping(address => Job) public _jobQueue;
 
-    event LogJobQueued(
+    event JobQueued(
         address indexed sender,
-        uint256 indexed jobId,
-        Status jobStatus
+        uint256 jobId,
+        Status status
     );
 
     function setJob(Status _status) external {
@@ -36,6 +35,6 @@ contract Jobber is Ownable {
 
         _jobIds.increment();
 
-        emit LogJobQueued(msg.sender, _jobQueue[msg.sender].jobId, _status);
+        emit JobQueued(msg.sender, _jobQueue[msg.sender].jobId, _status);
     } 
 }

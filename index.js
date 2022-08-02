@@ -3,7 +3,7 @@ require("dotenv").config();
 
 async function main() {
   const jobberAddress = process.env.JOBBER_ADDRESS;
-  const alchemy = process.env.ALCHEMY;
+  const alchemy = process.env.ALCHEMY_API_KEY;
   const provider = new ethers.providers.AlchemyWebSocketProvider(
     "matic",
     alchemy
@@ -13,9 +13,7 @@ async function main() {
     address: jobberAddress,
   };
 
-  provider.on(filter, (result) => {
-    console.log(1, result);
-  });
+  provider.on(filter, console.log);
 }
 
 main();
